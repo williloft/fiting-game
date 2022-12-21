@@ -11,22 +11,22 @@ const speed = 15;
 const background = new Sprite({
     position: {
         x: 0,
-        y: 150
+        y: 100
     },
     
     imageSrc: 'Assets/backgraund.gif',
-    scale: 2.5,
+    scale: 1.5,
     framesMax: 1
 })
 
 
 const shop = new Sprite({
     position: {
-        x: 2150,
-        y: 400,
+        x: 1300,
+        y: 260,
     },
     imageSrc: 'Assets/shop.png',
-    scale: 3.5,
+    scale: 2,
     framesMax: 6
 })
 
@@ -43,12 +43,12 @@ const player = new Fighter({
     },
     offset: {
         x: 0,
-        y: 150
+        y: -140
     },
     color: 'red',
     imageSrc: 'Assets/hero.png',
-    framesMax: 10,
-    scale: 4
+    framesMax: 18,
+    scale: 2
 });
 
 const keys = {
@@ -85,12 +85,12 @@ const enemy = new Fighter({
     },
     offset: {
         x: 0,
-        y: 150
+        y: -140
     },
     color: 'blue',
-    imageSrc: 'Assets/hero.png',
-    framesMax: 10,
-    scale: 4
+    imageSrc: 'Assets/enemy.png',
+    framesMax: 18,
+    scale: 2
 });
 
 

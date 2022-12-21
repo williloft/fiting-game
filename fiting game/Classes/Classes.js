@@ -13,7 +13,7 @@ class Sprite {
       this.offset = offset
     }
     
-      draw() {
+    draw() {
         c.drawImage(
           this.image, 
           this.framesCurrent * (this.image.width / this.framesMax),
@@ -24,8 +24,8 @@ class Sprite {
           this.position.y - this.offset.y, 
           (this.image.width / this.framesMax) * this.scale, 
           this.image.height * this.scale
-          );
-      }
+        );
+    }
 
       animatedFrame() {
         this.framesElapsed++
@@ -37,7 +37,6 @@ class Sprite {
             }
         }
     }
-  
       update() {
         this.draw();
         this.animatedFrame()
@@ -82,8 +81,8 @@ class Fighter extends Sprite{
         this.health = 100
     }
 
-
-
+    
+    
     update() {
         this.draw();
         this.animatedFrame()
