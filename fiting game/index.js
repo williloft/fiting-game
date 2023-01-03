@@ -11,19 +11,19 @@ const speed = 15;
 const background = new Sprite({
     position: {
         x: 0,
-        y: 100
+        y: 200
     },
     
     imageSrc: 'Assets/backgraund.gif',
-    scale: 1.5,
+    scale: 2.5,
     framesMax: 1
 })
 
 
 const shop = new Sprite({
     position: {
-        x: 1300,
-        y: 260,
+        x: 2200,
+        y: 650,
     },
     imageSrc: 'Assets/shop.png',
     scale: 2,
@@ -43,12 +43,12 @@ const player = new Fighter({
     },
     offset: {
         x: 0,
-        y: -140
+        y: 50
     },
     color: 'red',
-    imageSrc: 'Assets/hero.png',
-    framesMax: 18,
-    scale: 2
+    imageSrc: 'Assets/Sprites2/Idle.png',
+    framesMax: 10,
+    scale: 3.5
 });
 
 const keys = {
@@ -85,12 +85,12 @@ const enemy = new Fighter({
     },
     offset: {
         x: 0,
-        y: -140
+        y: 50
     },
     color: 'blue',
-    imageSrc: 'Assets/enemy.png',
-    framesMax: 18,
-    scale: 2
+    imageSrc: 'Assets/Sprites/Idle.png',
+    framesMax: 10,
+    scale: 3
 });
 
 
@@ -124,6 +124,18 @@ function animate() {
     }
 
     // Collision detection
+
+    if (
+        rectangularCollision({
+            rect1: player,
+            rect2: enemy
+        }) && player.isspAttacking 
+    ) {
+        player.isspAttacking = false;
+        enemy.health -= 20;
+        document.querySelector('#enemyHealth').style.width = enemy.health + '%'
+    }
+
     if (
         rectangularCollision({
             rect1: player,
@@ -134,11 +146,33 @@ function animate() {
         enemy.health -= 20;
         document.querySelector('#enemyHealth').style.width = enemy.health + '%'
     
+        
         if (enemy.health <= 0 || player.health <= 0){
             pickAWinner({player, enemy, timerid})
         }
     }
 
+    if (
+        rectangularCollision({
+            rect1: enemy,
+            rect2: player
+        }) && enemy.isspAttacking 
+    ) {
+        enemy.isspAttacking = false;
+        player.health -= 30;
+        document.querySelector('#playerHealth').style.width = player.health + '%'
+    }
+
+    if (
+        rectangularCollision({
+            rect1: enemy,
+            rect2: player
+        }) && enemy.isspAttacking 
+    ) {
+        enemy.isspAttacking = false;
+        player.health -= 20;
+        document.querySelector('#playerHealth').style.width = player.health + '%'
+    }
 
     if (
         rectangularCollision({
@@ -149,9 +183,6 @@ function animate() {
         enemy.isAttacking = false;
         player.health -= 20;
         document.querySelector('#playerHealth').style.width = player.health + '%'
-
-
-        
     }
 
     if (player.position.x < 0) {
@@ -186,6 +217,9 @@ window.addEventListener('keydown', (event) => {
         case 's':
             player.attack();
             break;
+        case ' ':  
+            player.spattack();
+            break;
 
         case 'ArrowUp':
             enemy.velocity.y = -20;
@@ -200,6 +234,9 @@ window.addEventListener('keydown', (event) => {
             break;
         case 'ArrowDown':
             enemy.attack();
+            break;
+        case 'Enter':
+            enemy.spattack();
             break;
     }
 });

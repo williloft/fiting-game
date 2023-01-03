@@ -12,6 +12,21 @@ function rectangularCollision({rect1, rect2}) {
     )
 }
 
+function rectangularCollision({rect1, rect2}) {
+    return (
+        rect1.spattackBox.position.x +
+        rect1.spattackBox.width >=
+        rect2.position.x &&
+        rect1.spattackBox.position.x <=
+        rect2.position.x + rect2.width &&
+        rect1.spattackBox.position.y + rect1.spattackBox.height >=
+        rect2.position.y &&
+        rect1.spattackBox.position.y <=
+        rect2.position.y + rect2.height
+    )
+}
+
+
 let timer = 60
 let timerid
 

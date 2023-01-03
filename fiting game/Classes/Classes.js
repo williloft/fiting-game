@@ -76,8 +76,18 @@ class Fighter extends Sprite{
             width: 100,
             height: 50,
         };
+        this.spattackBox = {
+            position: {
+                x: this.position.x,
+                y: this.position.y
+            },
+            offset,
+            width: 150,
+            height: 50,
+        };
         this.color = color;
         this.isAttacking;
+        this.isspAttacking
         this.health = 100
     }
 
@@ -89,6 +99,9 @@ class Fighter extends Sprite{
 
         this.attackBox.position.x = this.position.x - this.attackBox.offset.x;
         this.attackBox.position.y = this.position.y;
+
+        this.spattackBox.position.x = this.position.x - this.spattackBox.offset.x;
+        this.spattackBox.position.y = this.position.y;
 
         this.position.y += this.velocity.y;
         this.position.x += this.velocity.x;
@@ -104,6 +117,13 @@ class Fighter extends Sprite{
         this.isAttacking = true;
         setTimeout(() => {
             this.isAttacking = false;
+        }, 100);
+    }
+
+    spAttack() {
+        this.isspAttacking = true;
+        setTimeout(() => {
+            this.isspAttacking = false;
         }, 100);
     }
 }
